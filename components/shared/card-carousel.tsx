@@ -5,8 +5,6 @@ import {
 	Carousel,
 	CarouselContent,
 	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
 } from '@/components/ui/carousel'
 import { items41, items46 } from '@/data/items'
 import { ThreeDCard } from './3d-card'
@@ -16,12 +14,13 @@ interface Props {
 }
 
 export const CardCarousel: React.FC<Props> = ({ className }) => {
+	const allitems = [...items41, ...items46]
 	return (
 		<div className={cn('', className)}>
 			<Container>
 				<Carousel>
 					<CarouselContent>
-						{items41.map((item, index) => (
+						{allitems.map((item, index) => (
 							<CarouselItem key={index}>
 								<ThreeDCard {...item} />
 							</CarouselItem>
