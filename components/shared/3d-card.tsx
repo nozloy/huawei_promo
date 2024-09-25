@@ -8,7 +8,7 @@ import Link from 'next/link'
 interface Props {
 	name: string
 	image: string
-	size: number
+	size?: number
 }
 export function ThreeDCard({ name, image, size }: Props) {
 	return (
