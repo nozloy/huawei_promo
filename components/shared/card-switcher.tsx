@@ -68,7 +68,11 @@ export const CardSwitcher = () => {
 								exit={is46mm ? 'exitLeft' : 'exitRight'} // Анимация ухода
 								transition={{ duration: 0.3 }}
 							>
-								<ThreeDCard name={item.name} image={item.image} />
+								<ThreeDCard
+									name={item.name}
+									image={item.image}
+									size={is46mm ? 46 : 41}
+								/>
 							</motion.div>
 						))}
 				</AnimatePresence>

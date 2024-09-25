@@ -8,11 +8,17 @@ import Link from 'next/link'
 interface Props {
 	name: string
 	image: string
+	size: number
 }
-export function ThreeDCard({ name, image }: Props) {
+export function ThreeDCard({ name, image, size }: Props) {
 	return (
 		<CardContainer className='inter-var'>
-			<CardBody className='bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] md:w-[16rem] w-[23rem] h-auto rounded-xl p-6 border  '>
+			<CardBody
+				className={`bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] ${
+					size === 46 ? 'md:w-[20rem]' : 'md:w-[16rem]'
+				}  w-[23rem] h-auto rounded-xl p-6 border
+			`}
+			>
 				<CardItem
 					translateZ='50'
 					className='text-lg font-bold text-neutral-600 dark:text-white'
@@ -32,8 +38,8 @@ export function ThreeDCard({ name, image }: Props) {
 				>
 					<Image
 						src={image}
-						height='500'
-						width='500'
+						height='400'
+						width='400'
 						className='h-[400px] xl:h-[400px] w-auto object-cover rounded-xl'
 						alt='thumbnail'
 						loading='eager'

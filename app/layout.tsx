@@ -50,12 +50,7 @@ export default function RootLayout({
 					name='twitter:image'
 					content='https://promo.hi-techno.ru/_next/image?url=https%3A%2F%2Fconsumer.huawei.com%2Fcontent%2Fdam%2Fhuawei-cbg-site%2Fcommon%2Fmkt%2Fpdp%2Fwearables%2Fwatch-gt5%2Fimg%2Fs3%2Fhuawei-watch-gt-5-color-46mm-black-2x.png&w=1080&q=75'
 				/>
-				<link
-					rel='icon'
-					href='/icon?<generated>'
-					type='image/<generated>'
-					sizes='<generated>'
-				/>
+				<link rel='icon' href='/favicon.ico' sizes='any' />
 			</head>
 			<body
 				className={cn(
