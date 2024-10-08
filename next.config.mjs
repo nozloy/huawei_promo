@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['consumer.huawei.com', 'hi-techno.ru'],
+		domains: ['consumer.huawei.com', 'hi-techno.ru', 'shop-cdn.huawei.com'],
 	},
 }
 

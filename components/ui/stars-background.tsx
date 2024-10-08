@@ -1,143 +1,152 @@
-"use client";
-import { cn } from "@/lib/utils";
+'use client'
+import { cn } from '@/lib/utils'
 import React, {
-  useState,
-  useEffect,
-  useRef,
-  RefObject,
-  useCallback,
-} from "react";
+	useState,
+	useEffect,
+	useRef,
+	RefObject,
+	useCallback,
+} from 'react'
 
 interface StarProps {
-  x: number;
-  y: number;
-  radius: number;
-  opacity: number;
-  twinkleSpeed: number | null;
+	x: number
+	y: number
+	radius: number
+	opacity: number
+	twinkleSpeed: number | null
 }
 
 interface StarBackgroundProps {
-  starDensity?: number;
-  allStarsTwinkle?: boolean;
-  twinkleProbability?: number;
-  minTwinkleSpeed?: number;
-  maxTwinkleSpeed?: number;
-  className?: string;
+	starDensity?: number
+	allStarsTwinkle?: boolean
+	twinkleProbability?: number
+	minTwinkleSpeed?: number
+	maxTwinkleSpeed?: number
+	className?: string
 }
 
 export const StarsBackground: React.FC<StarBackgroundProps> = ({
-  starDensity = 0.00015,
-  allStarsTwinkle = true,
-  twinkleProbability = 0.7,
-  minTwinkleSpeed = 0.5,
-  maxTwinkleSpeed = 1,
-  className,
+	starDensity = 0.00015,
+	allStarsTwinkle = true,
+	twinkleProbability = 0.7,
+	minTwinkleSpeed = 0.5,
+	maxTwinkleSpeed = 1,
+	className,
 }) => {
-  const [stars, setStars] = useState<StarProps[]>([]);
-  const canvasRef: RefObject<HTMLCanvasElement> =
-    useRef<HTMLCanvasElement>(null);
+	const [stars, setStars] = useState<StarProps[]>([])
+	const canvasRef: RefObject<HTMLCanvasElement> =
+		useRef<HTMLCanvasElement>(null)
 
-  const generateStars = useCallback(
-    (width: number, height: number): StarProps[] => {
-      const area = width * height;
-      const numStars = Math.floor(area * starDensity);
-      return Array.from({ length: numStars }, () => {
-        const shouldTwinkle =
-          allStarsTwinkle || Math.random() < twinkleProbability;
-        return {
-          x: Math.random() * width,
-          y: Math.random() * height,
-          radius: Math.random() * 0.05 + 0.5,
-          opacity: Math.random() * 0.5 + 0.5,
-          twinkleSpeed: shouldTwinkle
-            ? minTwinkleSpeed +
-              Math.random() * (maxTwinkleSpeed - minTwinkleSpeed)
-            : null,
-        };
-      });
-    },
-    [
-      starDensity,
-      allStarsTwinkle,
-      twinkleProbability,
-      minTwinkleSpeed,
-      maxTwinkleSpeed,
-    ]
-  );
+	const generateStars = useCallback(
+		(width: number, height: number): StarProps[] => {
+			const area = width * height
+			const numStars = Math.floor(area * starDensity)
+			return Array.from({ length: numStars }, () => {
+				const shouldTwinkle =
+					allStarsTwinkle || Math.random() < twinkleProbability
+				return {
+					x: Math.random() * width,
+					y: Math.random() * height,
+					radius: Math.random() * 0.05 + 0.5,
+					opacity: Math.random() * 0.5 + 0.5,
+					twinkleSpeed: shouldTwinkle
+						? minTwinkleSpeed +
+						  Math.random() * (maxTwinkleSpeed - minTwinkleSpeed)
+						: null,
+				}
+			})
+		},
+		[
+			starDensity,
+			allStarsTwinkle,
+			twinkleProbability,
+			minTwinkleSpeed,
+			maxTwinkleSpeed,
+		],
+	)
 
-  useEffect(() => {
-    const updateStars = () => {
-      if (canvasRef.current) {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
+	// Функция обновления звезд и размеров холста
+	useEffect(() => {
+		const updateStars = () => {
+			if (canvasRef.current) {
+				const canvas = canvasRef.current
+				const ctx = canvas.getContext('2d')
+				if (!ctx) return
 
-        const { width, height } = canvas.getBoundingClientRect();
-        canvas.width = width;
-        canvas.height = height;
-        setStars(generateStars(width, height));
-      }
-    };
+				// Устанавливаем размеры холста на всю страницу
+				const width = document.documentElement.scrollWidth
+				const height = Math.max(
+					document.documentElement.scrollHeight,
+					window.innerHeight,
+					document.body.scrollHeight,
+				)
 
-    updateStars();
+				canvas.width = width
+				canvas.height = height
 
-    const resizeObserver = new ResizeObserver(updateStars);
-    if (canvasRef.current) {
-      resizeObserver.observe(canvasRef.current);
-    }
+				setStars(generateStars(width, height))
+			}
+		}
 
-    return () => {
-      if (canvasRef.current) {
-        resizeObserver.unobserve(canvasRef.current);
-      }
-    };
-  }, [
-    starDensity,
-    allStarsTwinkle,
-    twinkleProbability,
-    minTwinkleSpeed,
-    maxTwinkleSpeed,
-    generateStars,
-  ]);
+		// Первичная установка
+		updateStars()
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+		// Добавление обработчиков событий для обновления при изменении размеров окна
+		window.addEventListener('resize', updateStars)
+		window.addEventListener('scroll', updateStars)
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+		return () => {
+			window.removeEventListener('resize', updateStars)
+			window.removeEventListener('scroll', updateStars)
+		}
+	}, [
+		starDensity,
+		allStarsTwinkle,
+		twinkleProbability,
+		minTwinkleSpeed,
+		maxTwinkleSpeed,
+		generateStars,
+	])
 
-    let animationFrameId: number;
+	// Рендеринг звезд
+	useEffect(() => {
+		const canvas = canvasRef.current
+		if (!canvas) return
 
-    const render = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach((star) => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-        ctx.fill();
+		const ctx = canvas.getContext('2d')
+		if (!ctx) return
 
-        if (star.twinkleSpeed !== null) {
-          star.opacity =
-            0.5 +
-            Math.abs(Math.sin((Date.now() * 0.001) / star.twinkleSpeed) * 0.5);
-        }
-      });
+		let animationFrameId: number
 
-      animationFrameId = requestAnimationFrame(render);
-    };
+		const render = () => {
+			ctx.clearRect(0, 0, canvas.width, canvas.height)
+			stars.forEach(star => {
+				ctx.beginPath()
+				ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2)
+				ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`
+				ctx.fill()
 
-    render();
+				if (star.twinkleSpeed !== null) {
+					star.opacity =
+						0.5 +
+						Math.abs(Math.sin((Date.now() * 0.001) / star.twinkleSpeed) * 0.5)
+				}
+			})
 
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [stars]);
+			animationFrameId = requestAnimationFrame(render)
+		}
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className={cn("h-full w-full absolute inset-0", className)}
-    />
-  );
-};
+		render()
+
+		return () => {
+			cancelAnimationFrame(animationFrameId)
+		}
+	}, [stars])
+
+	return (
+		<canvas
+			ref={canvasRef}
+			className={cn('absolute top-0 left-0 w-full h-full', className)}
+		/>
+	)
+}

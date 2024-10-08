@@ -6,15 +6,15 @@ import { items41, items46 } from '@/data/items'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 
-export const CardSwitcher = () => {
-	const [is46mm, setIs46mm] = useState(false)
+export const GT5CardSwitcher = () => {
+	const [is41mm, setIs41mm] = useState(false)
 	const [showItems, setShowItems] = useState(true)
 
 	const handleSwitchChange = (value: boolean) => {
 		setShowItems(false) // Сначала скрываем текущие карточки
 
 		setTimeout(() => {
-			setIs46mm(value) // Меняем группу после завершения анимации
+			setIs41mm(value) // Меняем группу после завершения анимации
 			setShowItems(true) // Показываем новую группу карточек
 		}, 500) // Время должно совпадать с длительностью анимации выхода
 	}
@@ -48,7 +48,7 @@ export const CardSwitcher = () => {
 		}),
 	}
 
-	const currentItems = is46mm ? items46 : items41
+	const currentItems = is41mm ? items41 : items46
 
 	return (
 		<div className='flex flex-col gap-2 items-center'>
@@ -63,15 +63,15 @@ export const CardSwitcher = () => {
 								key={item.name}
 								custom={index} // Передаем индекс карточки
 								variants={cardVariants}
-								initial={is46mm ? 'hiddenRight' : 'hiddenLeft'} // Исходная позиция
+								initial={is41mm ? 'hiddenRight' : 'hiddenLeft'} // Исходная позиция
 								animate='visible' // Анимация показа
-								exit={is46mm ? 'exitLeft' : 'exitRight'} // Анимация ухода
+								exit={is41mm ? 'exitLeft' : 'exitRight'} // Анимация ухода
 								transition={{ duration: 0.3 }}
 							>
 								<ThreeDCard
-									name={item.name}
-									image={item.image}
-									size={is46mm ? 46 : 41}
+									{...item}
+									size={is41mm ? 41 : 46}
+									section='gt5-gift-section'
 								/>
 							</motion.div>
 						))}

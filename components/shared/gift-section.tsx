@@ -10,13 +10,13 @@ interface Props {
 	className?: string
 }
 
-export const GiftSection: React.FC<Props> = ({ className }) => {
+export const GT5GiftSection: React.FC<Props> = ({ className }) => {
 	return (
 		<div className={cn('px-5 pt-10', className)}>
 			<div className='text-4xl xl:text-6xl font-white font-bold text-center pb-10'>
 				Подарки за предзаказ
 			</div>
-			<Container className='flex flex-col xl:flex-row justify-between px-6 xl:px-32 items-center bg-white rounded-xl relative w-[23rem] md:w-[40rem] xl:w-auto'>
+			<Container className='flex flex-col xl:flex-row justify-between px-6 xl:px-32 items-center bg-white rounded-xl relative w-[22rem] md:w-[40rem] xl:w-auto'>
 				<div
 					className='absolute text-slate-300 z-20 bottom-60 left-4  md:left-auto md:top-5 md:right-10 drop-shadow
 				'
@@ -63,7 +63,7 @@ export const GiftSection: React.FC<Props> = ({ className }) => {
 								window.open(process.env.NEXT_PUBLIC_TARGET_PAGE, '_blank')
 							}
 							variant={'outline'}
-							className='text-white bg-yellow-500 w-full'
+							className='text-white bg-yellow-500 w-full font-bold text-lg'
 							size={'lg'}
 						>
 							Подробнее

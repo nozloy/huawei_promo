@@ -8,26 +8,28 @@ import {
 } from '@/components/ui/carousel'
 import { items41, items46 } from '@/data/items'
 import { ThreeDCard } from './3d-card'
+import { BlinkShadow } from './blink-shadow'
 
 interface Props {
 	className?: string
 }
 
-export const CardCarousel: React.FC<Props> = ({ className }) => {
-	const allitems = [...items41, ...items46]
+export const GT5CardCarousel: React.FC<Props> = ({ className }) => {
+	const allitems = [...items46, ...items41]
 	return (
-		<div className={cn('', className)}>
+		<div className={cn('relative', className)}>
 			<Container>
 				<Carousel>
 					<CarouselContent>
 						{allitems.map((item, index) => (
 							<CarouselItem key={index}>
-								<ThreeDCard {...item} />
+								<ThreeDCard {...item} section='gt5-gift-section' />
 							</CarouselItem>
 						))}
 					</CarouselContent>
 				</Carousel>
 			</Container>
+			<BlinkShadow />
 		</div>
 	)
 }
