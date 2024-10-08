@@ -24,7 +24,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<head>
-				<title>Предзаказ Huawei Watch GT 5</title>
+				<title>Подарки за покупку Huawei Watch GT 5 и Pura 70</title>
 				<meta
 					name='description'
 					content='Подарки при покупке Huawei Watch GT 5 и Pura 70'
