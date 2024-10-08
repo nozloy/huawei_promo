@@ -14,7 +14,7 @@ interface Props {
 }
 export function ThreeDCard({ name, image, size, subname, section }: Props) {
 	return (
-		<CardContainer className='inter-var'>
+		<CardContainer>
 			<CardBody
 				className={`bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-[22rem] h-auto rounded-xl p-6 border 
     ${
@@ -46,8 +46,8 @@ export function ThreeDCard({ name, image, size, subname, section }: Props) {
 				>
 					<Image
 						src={image}
-						height='400'
-						width='400'
+						height='200'
+						width='200'
 						className='h-[400px] xl:h-[400px] w-auto object-cover rounded-xl'
 						alt='thumbnail'
 						loading='eager'

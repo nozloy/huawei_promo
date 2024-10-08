@@ -55,7 +55,7 @@ export const GT5CardSwitcher = () => {
 			<SwitchOnPage onChange={handleSwitchChange} />
 
 			{/* Контейнер с flex */}
-			<div className='flex flex-wrap gap-4 justify-center min-h-screen py-2'>
+			<div className='flex flex-wrap gap-4 justify-center py-2'>
 				<AnimatePresence mode='wait'>
 					{showItems &&
 						currentItems.map((item, index) => (
