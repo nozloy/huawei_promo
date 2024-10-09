@@ -68,11 +68,7 @@ export const GT5CardSwitcher = () => {
 								exit={is41mm ? 'exitLeft' : 'exitRight'} // Анимация ухода
 								transition={{ duration: 0.3 }}
 							>
-								<ThreeDCard
-									{...item}
-									size={is41mm ? 41 : 46}
-									section='gt5-gift-section'
-								/>
+								<ThreeDCard {...item} size={is41mm ? 41 : 46} />
 							</motion.div>
 						))}
 				</AnimatePresence>

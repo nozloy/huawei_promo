@@ -3,16 +3,14 @@
 import Image from 'next/image'
 import React from 'react'
 import { CardBody, CardContainer, CardItem } from '../ui/3d-card'
-import Link from 'next/link'
 
 interface Props {
 	name: string
 	image: string
 	size?: number
 	subname: string
-	section: string
 }
-export function ThreeDCard({ name, image, size, subname, section }: Props) {
+export function ThreeDCard({ name, image, size, subname }: Props) {
 	return (
 		<CardContainer>
 			<CardBody
@@ -53,16 +51,6 @@ export function ThreeDCard({ name, image, size, subname, section }: Props) {
 						loading='eager'
 					/>
 				</CardItem>
-				{/* <div className='flex justify-center items-center mt-10'>
-					<CardItem
-						translateZ={20}
-						as={Link}
-						href={'/#' + section}
-						className='px-4 py-2 rounded-xl bg-yellow-500 text-white text-xl md:text-lg font-bold'
-					>
-						Подарки
-					</CardItem>
-				</div> */}
 			</CardBody>
 		</CardContainer>
 	)

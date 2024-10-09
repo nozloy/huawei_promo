@@ -49,7 +49,7 @@ export const PuraCardSwitcher = () => {
 							exit={'exitRight'} // Анимация ухода
 							transition={{ duration: 0.3 }}
 						>
-							<ThreeDCard {...item} size={50} section='pura-gift-section' />
+							<ThreeDCard {...item} size={50} />
 						</motion.div>
 					))}
 				</AnimatePresence>
