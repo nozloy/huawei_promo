@@ -35,10 +35,10 @@ export const PuraCardSwitcher = () => {
 	}
 
 	return (
-		<div className='flex flex-col gap-2 items-center'>
+		<div className='flex flex-col gap-2 items-center h-[700px]'>
 			{/* Контейнер с flex */}
 			<div className='flex flex-wrap gap-4 justify-center min-h-screen py-2'>
-				<AnimatePresence mode='wait'>
+				<AnimatePresence mode='popLayout'>
 					{pura.map((item, index) => (
 						<motion.div
 							key={item.name}

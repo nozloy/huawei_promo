@@ -53,7 +53,7 @@ export function ThreeDCard({ name, image, size, subname, section }: Props) {
 						loading='eager'
 					/>
 				</CardItem>
-				<div className='flex justify-center items-center mt-10'>
+				{/* <div className='flex justify-center items-center mt-10'>
 					<CardItem
 						translateZ={20}
 						as={Link}
@@ -62,7 +62,7 @@ export function ThreeDCard({ name, image, size, subname, section }: Props) {
 					>
 						Подарки
 					</CardItem>
-				</div>
+				</div> */}
 			</CardBody>
 		</CardContainer>
 	)

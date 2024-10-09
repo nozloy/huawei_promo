@@ -14,7 +14,7 @@ export const GT5GiftSection: React.FC<Props> = ({ className }) => {
 	return (
 		<div className={cn('px-5 pt-10', className)}>
 			<div className='text-4xl xl:text-6xl font-white font-bold text-center pb-10'>
-				Подарки за предзаказ
+				Подарки за покупку
 			</div>
 			<Container className='flex flex-col xl:flex-row justify-between px-6 xl:px-32 items-center bg-white rounded-xl relative w-[22rem] md:w-[40rem] xl:w-auto'>
 				<div
@@ -49,7 +49,7 @@ export const GT5GiftSection: React.FC<Props> = ({ className }) => {
 				</motion.div>
 				<div className='flex flex-col gap-2 pt-10 h-full'>
 					<p className='text-black text-left text-xl'>
-						Бонусы предзаказа Huawei Watch GT 5
+						Бонусы при покупке Huawei Watch GT 5
 					</p>
 					<div className='text-black text-left text-xl font-bold'>
 						+1 год гарантии

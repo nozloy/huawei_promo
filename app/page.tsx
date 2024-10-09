@@ -16,23 +16,8 @@ export default function Home() {
 				Опережая тренды
 				<br />и сохраняя аутентичность
 			</div>
-			<div className='hidden sm:block relative'>
+			<div className='hidden sm:block'>
 				<PuraCardSwitcher />
-				{/* <div className='absolute top-[41rem] left-1/2 transform -translate-x-1/2 text-4xl text-white font-thin text-center leading-relaxed'>
-					Pura — это новая глава в истории смартфонов
-					<br />
-					Лаконичность и чистота форм
-					<br />
-					Открывает неизведанные возможности
-					<br />
-					Расширяет горизонты и позволяет
-					<br />
-					взглянуть на мир по-новому
-					<br />
-					Диктует моду, создавая неповторимый стиль
-					<br />
-					HUAWEI Pura
-				</div> */}
 			</div>
 
 			<div className='block sm:hidden'>
@@ -44,7 +29,7 @@ export default function Home() {
 
 			<Separator className='my-4 max-w-4xl mx-auto bg-slate-700' />
 
-			<div className=' relative text-4xl xl:text-6xl font-white font-bold text-center pt-10'>
+			<div className=' relative text-4xl xl:text-6xl font-white font-bold text-center pt-52'>
 				<Cover>
 					Многогранность
 					<br />
