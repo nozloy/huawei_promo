@@ -23,7 +23,7 @@ export const PuraCardCarousel: React.FC<Props> = ({ className }) => {
 					<CarouselContent>
 						{allitems.map((item, index) => (
 							<CarouselItem key={index}>
-								<ThreeDCard {...item} section='pura-gift-section' />
+								<ThreeDCard {...item} />
 							</CarouselItem>
 						))}
 					</CarouselContent>

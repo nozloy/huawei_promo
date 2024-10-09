@@ -23,7 +23,7 @@ export const GT5CardCarousel: React.FC<Props> = ({ className }) => {
 					<CarouselContent>
 						{allitems.map((item, index) => (
 							<CarouselItem key={index}>
-								<ThreeDCard {...item} section='gt5-gift-section' />
+								<ThreeDCard {...item} />
 							</CarouselItem>
 						))}
 					</CarouselContent>
